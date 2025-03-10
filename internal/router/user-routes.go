@@ -9,5 +9,5 @@ func UserRoutes(r *gin.Engine) {
 	userRoutes := r.Group("/users")
 
 	userRoutes.POST("/register", handler.Register)
-	userRoutes.POST("/login")
+	userRoutes.POST("/login", handler.Login)
 }

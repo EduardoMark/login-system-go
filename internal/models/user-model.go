@@ -44,6 +44,21 @@ func Save(user *User) error {
 	return nil
 }
 
+func FindOneUser(username string) (*User, error) {
+	var user User
+	conn := database.Connection()
+
+	result := conn.Where("username = ?", username).First(&user)
+	if result.Error != nil {
+		if result.Error == gorm.ErrRecordNotFound {
+			return nil, fmt.Errorf("user not found")
+		}
+		return nil, result.Error
+	}
+
+	return &user, nil
+}
+
 func isUsernameUnique(username string) (bool, error) {
 	var user User
 	conn := database.Connection()
