@@ -1,10 +1,13 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/EduardoMark/login-system-go/internal/handler"
+	"github.com/gin-gonic/gin"
+)
 
 func UserRoutes(r *gin.Engine) {
 	userRoutes := r.Group("/users")
 
-	userRoutes.POST("/register")
+	userRoutes.POST("/register", handler.Register)
 	userRoutes.POST("/login")
 }
